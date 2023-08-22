@@ -6,7 +6,7 @@ const navigator = createStackNavigator(
   { Search: SearchScreen },
   {
     initialRouteName: "Search",
-    defaultNavigationOptions: { title: "BusinessSearch" },
+    defaultNavigationOptions: { title: "Business Search" },
   }
 );
 
