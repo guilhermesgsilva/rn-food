@@ -1,22 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
-import yelp from "../api/yelp";
+import useBusinesses from "../hooks/useBusinesses";
+import BusinessesList from "../components/BusinessesList.js";
 
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [businesses, setBusinesses] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { searchApi, businesses, errorMessage } = useBusinesses();
 
-  const handleSearchSubmit = async () => {
-    try {
-      const response = await yelp.get("/businesses/search", {
-        params: { term: searchTerm, location: "san jose", limit: 20 },
-      });
-      setBusinesses(response.data.businesses);
-    } catch (e) {
-      setErrorMessage("Something went wrong, try again later.");
-    }
+  const filterBusinesses = (price) => {
+    return businesses.filter((business) => {
+      return business.price === price;
+    });
   };
 
   return (
@@ -25,10 +20,19 @@ const SearchScreen = () => {
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        onSearchSubmit={handleSearchSubmit}
+        onSearchSubmit={searchApi}
       />
       <Text>We have found {businesses.length} businesses</Text>
       {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : <></>}
+      <BusinessesList
+        title="Cost Effective"
+        businesses={filterBusinesses("$")}
+      />
+      <BusinessesList title="Bit Pricier" businesses={filterBusinesses("$$")} />
+      <BusinessesList
+        title="Big Spender"
+        businesses={filterBusinesses("$$$")}
+      />
     </View>
   );
 };

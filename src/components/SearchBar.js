@@ -13,7 +13,7 @@ const SearchBar = ({ searchTerm, setSearchTerm, onSearchSubmit }) => {
         style={styles.input}
         value={searchTerm}
         onChangeText={(newSearchTerm) => setSearchTerm(newSearchTerm)}
-        onEndEditing={onSearchSubmit}
+        onEndEditing={() => onSearchSubmit(searchTerm)}
       />
     </View>
   );
