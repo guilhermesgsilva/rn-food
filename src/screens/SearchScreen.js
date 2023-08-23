@@ -6,6 +6,7 @@ import yelp from "../api/yelp";
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [businesses, setBusinesses] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSearchSubmit = async () => {
     try {
@@ -13,8 +14,8 @@ const SearchScreen = () => {
         params: { term: searchTerm, location: "san jose", limit: 20 },
       });
       setBusinesses(response.data.businesses);
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      setErrorMessage("Something went wrong, try again later.");
     }
   };
 
@@ -27,10 +28,11 @@ const SearchScreen = () => {
         onSearchSubmit={handleSearchSubmit}
       />
       <Text>We have found {businesses.length} businesses</Text>
+      {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : <></>}
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ error: { color: "red" } });
 
 export default SearchScreen;
