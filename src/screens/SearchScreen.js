@@ -16,14 +16,22 @@ const SearchScreen = () => {
 
   return (
     <View>
-      <Text>Search Screen</Text>
+      {/* <Text>Search Screen</Text> */}
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         onSearchSubmit={searchApi}
       />
-      <Text>We have found {businesses.length} businesses</Text>
-      {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : <></>}
+      <View style={styles.messageContainer}>
+        <Text style={styles.message}>
+          We have found {businesses.length} businesses.
+        </Text>
+        {errorMessage ? (
+          <Text style={styles.error}>{errorMessage}</Text>
+        ) : (
+          <></>
+        )}
+      </View>
       <BusinessesList
         title="Cost Effective"
         businesses={filterBusinesses("$")}
@@ -37,6 +45,19 @@ const SearchScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({ error: { color: "red" } });
+const styles = StyleSheet.create({
+  messageContainer: {
+    marginRight: 15,
+    marginBottom: 15,
+  },
+  message: {
+    color: "grey",
+    alignSelf: "flex-end",
+  },
+  error: {
+    color: "red",
+    alignSelf: "flex-end",
+  },
+});
 
 export default SearchScreen;

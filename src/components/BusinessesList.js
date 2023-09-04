@@ -4,9 +4,11 @@ import BusinessDetail from "./BusinessDetail";
 
 const BusinessesList = ({ title, businesses }) => {
   return (
-    <View>
-      <Text style={styles.title}>{title}</Text>
-      <Text>Businesses: {businesses.length}</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>
+        {title} ({businesses.length})
+      </Text>
+      {/* <Text style={styles.subtitle}>Businesses: {businesses.length}</Text> */}
       <FlatList
         horizontal
         data={businesses}
@@ -20,7 +22,18 @@ const BusinessesList = ({ title, businesses }) => {
 };
 
 const styles = StyleSheet.create({
-  title: { fontSize: 18, fontWeight: "bold" },
+  container:{
+    marginBottom: 10
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 15,
+    marginBottom: 5
+  },
+  /* subtitle: {
+    marginLeft: 15,
+  }, */
 });
 
 export default BusinessesList;
