@@ -11,6 +11,7 @@ const BusinessesList = ({ title, businesses }) => {
       {/* <Text style={styles.subtitle}>Businesses: {businesses.length}</Text> */}
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={businesses}
         keyExtractor={(business) => business.id}
         renderItem={({ item }) => {
@@ -22,14 +23,14 @@ const BusinessesList = ({ title, businesses }) => {
 };
 
 const styles = StyleSheet.create({
-  container:{
-    marginBottom: 10
+  container: {
+    marginBottom: 10,
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
     marginLeft: 15,
-    marginBottom: 5
+    marginBottom: 5,
   },
   /* subtitle: {
     marginLeft: 15,

@@ -17,6 +17,10 @@ export default () => {
   };
 
   useEffect(() => {
+    if (businesses.length) setErrorMessage("");
+  }, [businesses]);
+
+  useEffect(() => {
     searchApi("pasta");
   }, []);
 
