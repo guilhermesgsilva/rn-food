@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, ScrollView } from "react-native";
+
 import SearchBar from "../components/SearchBar";
 import useBusinesses from "../hooks/useBusinesses";
 import BusinessesList from "../components/BusinessesList.js";

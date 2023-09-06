@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 
-const BusinessDetail = ({ data }) => {
+const BusinessListItem = ({ data }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: data.image_url }} />
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BusinessDetail;
+export default BusinessListItem;
